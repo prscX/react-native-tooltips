@@ -29,7 +29,7 @@ import RNTooltips from 'react-native-tooltips';
 - React Way
 
 ```javascript
-        <RNTooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} />
+<RNTooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} />
 ```
 
 - API Way
