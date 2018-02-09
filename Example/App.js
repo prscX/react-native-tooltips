@@ -15,6 +15,11 @@ import {
 
 import Tooltips from 'react-native-tooltips'
 
+
+import Top from "./components/Top";
+import Center from "./components/Center";
+import Bottom from "./components/Bottom";
+
 type Props = {};
 export default class App extends Component<Props> {
   constructor (props) {
@@ -32,13 +37,15 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
-        <TouchableOpacity onPress={() => {
-            this._onPress(this.reference);
-          }} ref={ref => {
-            this.reference = ref;
-          }}>
-          <Text>Long Press</Text>
-        </TouchableOpacity>
+        <Top style={styles.top} onPress={ref => {
+            this._onPress(ref);
+          }} />
+        <Center style={styles.center} onPress={ref => {
+            this._onPress(ref);
+          }} />
+        <Bottom style={styles.bottom} onPress={ref => {
+            this._onPress(ref);
+          }} />
         <Tooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} />
       </View>;
   }
@@ -47,8 +54,8 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: "#F5FCFF",
+    flexDirection: "column",
+    justifyContent: "space-between"
   }
 });
