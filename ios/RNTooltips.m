@@ -43,7 +43,10 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props)
         toolTip.hasShadow = YES;
     }
     if ([autoHide boolValue]) {
-        [toolTip dismissInTimeInterval:(NSTimeInterval) [duration floatValue]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [toolTip dismissInTimeInterval:(NSTimeInterval) [duration floatValue] animated: YES];
+            // Timer here
+        });
     }
 
     [toolTip presentFromView:target animated:YES];

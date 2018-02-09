@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B3E7B58A1CC2AC0600A0062D /* RNTooltips.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNTooltips.m */; };
+		CCE5160CD87BF3A3D91463CF /* libPods-RNTooltips.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F07CB86D884D7B6AC1F3E087 /* libPods-RNTooltips.a */; };
 		CE1E4A23202C461F00D7F75F /* libSexyTooltip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1E4A22202C461C00D7F75F /* libSexyTooltip.a */; };
 		CE1E4A39202C571200D7F75F /* libpop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1E4A20202C461C00D7F75F /* libpop.a */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 			files = (
 				CE1E4A39202C571200D7F75F /* libpop.a in Frameworks */,
 				CE1E4A23202C461F00D7F75F /* libSexyTooltip.a in Frameworks */,
+				CCE5160CD87BF3A3D91463CF /* libPods-RNTooltips.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
