@@ -46,7 +46,9 @@ export default class App extends Component<Props> {
         <Bottom style={styles.bottom} onPress={ref => {
             this._onPress(ref);
           }} />
-        <Tooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} />
+        <Tooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} onHide={() => {
+            console.log("On Hide");
+          }} />
       </View>;
   }
 }

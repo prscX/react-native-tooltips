@@ -35,7 +35,7 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void Show(final int view, final ReadableMap props, final Promise promise) {
+  public void Show(final int view, final ReadableMap props, final Callback onHide) {
     final Activity activity = this.getCurrentActivity();
     final ViewGroup target = activity.findViewById(view);
 
@@ -80,6 +80,13 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
     tooltip = tooltip.textColor(Color.parseColor(textColor));
     tooltip = tooltip.textSize(TypedValue.COMPLEX_UNIT_SP, textSize);
     tooltip = tooltip.setTextGravity(gravity);
+
+    tooltip.onHide(new ViewTooltip.ListenerHide() {
+      @Override
+      public void onHide(View view) {
+        onHide.invoke();
+      }
+    });
 
     tooltip.show();
   }

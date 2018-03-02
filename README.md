@@ -80,6 +80,7 @@ RNTooltips.Show(
 | `visible`      | `bool`     |         | Should tooltip be displayed
 | `shadow`      | `bool`     |         | Shadow on tooltip view
 | `reference`      | `object`     |         | Reference of react component of which you need tooltip
+| `onHide`      | `func`     |         | Callback function invoked on tooltip hide
 
 
 ## Credits
