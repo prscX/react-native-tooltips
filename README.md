@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://storage.googleapis.com/material-design/publish/material_v_12/assets/0B7WCemMG6e0VZ1JKMzJFcmhOWkk/components-tooltips.png" width="800" height="600" />
+  <img src="https://storage.googleapis.com/material-design/publish/material_v_12/assets/0B7WCemMG6e0VZ1JKMzJFcmhOWkk/components-tooltips.png" width="600" height="600" />
 </p>
 
 <p align="center">
@@ -13,13 +13,15 @@
 # React Native: Native Tooltips
 This library is a React Native bridge around native tooltips. It allows you to create simple tip views.
 
-- Android: [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip)
 
-<img src="https://raw.githubusercontent.com/florent37/ViewTooltip/master/medias/with_border.gif">
+| **Android: [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip)**             |
+| ----------------- |
+| <img src="https://raw.githubusercontent.com/florent37/ViewTooltip/master/medias/with_border.gif" width="600" height="300" />                  |
 
-- iOS: [calm/SexyTooltip](https://github.com/calm/SexyTooltip)
 
-<img src="https://camo.githubusercontent.com/add1764d27026b81adb117e07a10781c9abbde1b/687474703a2f2f692e696d6775722e636f6d2f4f4e383257526c2e676966">
+| **iOS: [calm/SexyTooltip](https://github.com/calm/SexyTooltip)**             |
+| ----------------- |
+| <img src="https://camo.githubusercontent.com/add1764d27026b81adb117e07a10781c9abbde1b/687474703a2f2f692e696d6775722e636f6d2f4f4e383257526c2e676966" width="600" height="300" />                  |
 
 
 Before we dive into on how to use this library. We would like to thank all the contributor of [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip) & [calm/SexyTooltip](https://github.com/calm/SexyTooltip) libraries for providing such a awesome nice, cool library
