@@ -56,7 +56,13 @@ class Tooltips extends Component {
       props.shadow = Tooltips.defaultProps.shadow;
     }
 
-    RNTooltips.Show(ref, props);
+    RNTooltips.Show(
+      ref,
+      props,
+      () => {
+        props.onHide && props.onHide()
+      }
+    );
   }
 
   componentDidUpdate() {
@@ -73,7 +79,8 @@ class Tooltips extends Component {
         textColor: this.props.textColor,
         textSize: this.props.textSize,
         gravity: this.props.gravity,
-        shadow: this.props.shadow
+        shadow: this.props.shadow,
+        onHide: this.props.onHide
       });
     }
   }
@@ -99,7 +106,8 @@ Tooltips.propTypes = {
   gravity: PropTypes.number,
   shadow: PropTypes.bool,
   visible: PropTypes.bool,
-  reference: PropTypes.object
+  reference: PropTypes.object,
+  onHide: PropTypes.func
 };
 
 Tooltips.defaultProps = {

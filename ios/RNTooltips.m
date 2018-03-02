@@ -1,6 +1,22 @@
 
 #import "RNTooltips.h"
 
+
+
+@interface TooltipDelegate : NSObject <SexyTooltipDelegate>
+
+@property (nonatomic, strong) RCTResponseSenderBlock onHide;
+
+@end
+
+@implementation TooltipDelegate
+- (void)tooltipDidDismiss:(SexyTooltip *)tooltip {
+    _onHide(@[]);
+}
+
+@end
+
+
 @implementation RNTooltips
 
 @synthesize bridge = _bridge;
@@ -12,7 +28,7 @@
 RCT_EXPORT_MODULE()
 
 
-RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props)
+RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHide:(RCTResponseSenderBlock)onHide)
 {
     UIView *target = [self.bridge.uiManager viewForReactTag: view];
     
@@ -34,23 +50,28 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props)
     [attributes addAttribute:NSFontAttributeName value: [UIFont systemFontOfSize: [textSize floatValue]] range:NSMakeRange(0,text.length)];
 
     SexyTooltip *toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes];
+
+    TooltipDelegate *delegate = [[TooltipDelegate alloc] init];
+    delegate.onHide = onHide;
+    [toolTip setDelegate: delegate];
+
     toolTip.color = [RNTooltips colorFromHexCode: tintColor];
     toolTip.cornerRadius = [corner floatValue];
     toolTip.dismissesOnTap = [clickToHide boolValue];
     toolTip.padding = UIEdgeInsetsMake(6, 8, 6, 8);
-    
+
     if ([shadow boolValue]) {
         toolTip.hasShadow = YES;
     }
     if ([autoHide boolValue]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [toolTip dismissInTimeInterval:(NSTimeInterval) [duration floatValue] animated: YES];
-            // Timer here
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+        [toolTip dismissInTimeInterval:(NSTimeInterval) [duration floatValue] animated: YES];
+//        });
     }
 
     [toolTip presentFromView:target animated:YES];
 }
+
 
 
 + (UIColor *) colorFromHexCode:(NSString *)hexString {
