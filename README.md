@@ -14,6 +14,9 @@
 This library is a React Native bridge around native tooltips. It allows you to create simple tip views.
 
 
+> **Note:**
+> - Android SDK 27 > is supported
+
 | **Android: [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip)**             |
 | ----------------- |
 | <img src="https://raw.githubusercontent.com/florent37/ViewTooltip/master/medias/with_border.gif" width="600" height="300" />                  |
