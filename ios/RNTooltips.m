@@ -44,6 +44,7 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHi
     NSNumber *textSize = [props objectForKey: @"textSize"];
     NSNumber *gravity = [props objectForKey: @"gravity"];
     NSNumber *shadow = [props objectForKey: @"shadow"];
+    NSNumber *arrow = [props objectForKey: @"arrow"];
 
     NSMutableAttributedString *attributes = [[NSMutableAttributedString alloc] initWithString: text];
     [attributes addAttribute:NSForegroundColorAttributeName value:[RNTooltips colorFromHexCode: textColor] range:NSMakeRange(0, text.length)];
@@ -59,14 +60,15 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHi
     toolTip.cornerRadius = [corner floatValue];
     toolTip.dismissesOnTap = [clickToHide boolValue];
     toolTip.padding = UIEdgeInsetsMake(6, 8, 6, 8);
-
+    
+    if (![arrow boolValue]) {
+        toolTip.arrowHeight = 0;
+    }
     if ([shadow boolValue]) {
         toolTip.hasShadow = YES;
     }
     if ([autoHide boolValue]) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
         [toolTip dismissInTimeInterval:(NSTimeInterval) [duration floatValue] animated: YES];
-//        });
     }
 
     [toolTip presentFromView:target animated:YES];

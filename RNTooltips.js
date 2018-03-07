@@ -29,6 +29,43 @@ class Tooltips extends Component {
     END: 3
   };
 
+  static propTypes = {
+    ...ViewPropTypes,
+
+    text: PropTypes.string,
+    position: PropTypes.number,
+    align: PropTypes.number,
+    autoHide: PropTypes.bool,
+    duration: PropTypes.number,
+    clickToHide: PropTypes.bool,
+    corner: PropTypes.number,
+    tintColor: PropTypes.string,
+    textColor: PropTypes.string,
+    textSize: PropTypes.number,
+    gravity: PropTypes.number,
+    shadow: PropTypes.bool,
+    arrow: PropTypes.bool,
+    visible: PropTypes.bool,
+    reference: PropTypes.object,
+    onHide: PropTypes.func
+  };
+
+  static defaultProps = {
+    text: "",
+    position: 4,
+    align: 2,
+    autoHide: true,
+    duration: Platform.OS === "android" ? 4000 : 4,
+    clickToHide: false,
+    corner: Platform.OS === "android" ? 30 : 0,
+    tintColor: "#1F7C82",
+    textColor: "#FFFFFF",
+    textSize: 12,
+    gravity: 2,
+    arrow: true,
+    shadow: true
+  };
+
   static Show(ref, props) {
     if (props.text === undefined) {
       props.text = Tooltips.defaultProps.text;
@@ -54,6 +91,8 @@ class Tooltips extends Component {
       props.gravity = Tooltips.defaultProps.gravity;
     } else if (props.shadow === undefined) {
       props.shadow = Tooltips.defaultProps.shadow;
+    } else if (props.arrow === undefined) {
+      props.arrow = Tooltips.defaultProps.arrow
     }
 
     RNTooltips.Show(
@@ -78,6 +117,7 @@ class Tooltips extends Component {
         tintColor: this.props.tintColor,
         textColor: this.props.textColor,
         textSize: this.props.textSize,
+        arrow: this.props.arrow,
         gravity: this.props.gravity,
         shadow: this.props.shadow,
         onHide: this.props.onHide
@@ -89,40 +129,5 @@ class Tooltips extends Component {
     return null;
   }
 }
-
-Tooltips.propTypes = {
-  ...ViewPropTypes,
-
-  text: PropTypes.string,
-  position: PropTypes.number,
-  align: PropTypes.number,
-  autoHide: PropTypes.bool,
-  duration: PropTypes.number,
-  clickToHide: PropTypes.bool,
-  corner: PropTypes.number,
-  tintColor: PropTypes.string,
-  textColor: PropTypes.string,
-  textSize: PropTypes.number,
-  gravity: PropTypes.number,
-  shadow: PropTypes.bool,
-  visible: PropTypes.bool,
-  reference: PropTypes.object,
-  onHide: PropTypes.func
-};
-
-Tooltips.defaultProps = {
-  text: "",
-  position: 4,
-  align: 2,
-  autoHide: true,
-  duration: Platform.OS === "android" ? 4000 : 4,
-  clickToHide: false,
-  corner: Platform.OS === "android" ? 30 : 0,
-  tintColor: "#1F7C82",
-  textColor: "#FFFFFF",
-  textSize: 12,
-  gravity: 2,
-  shadow: true
-};
 
 export default Tooltips;

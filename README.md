@@ -79,6 +79,7 @@ RNTooltips.Show(
 | `gravity`      | `number`     |         | Gravity of text
 | `visible`      | `bool`     |         | Should tooltip be displayed
 | `shadow`      | `bool`     |         | Shadow on tooltip view
+| `arrow: iOS`      | `bool`     |    true     | Display Arrow
 | `reference`      | `object`     |         | Reference of react component of which you need tooltip
 | `onHide`      | `func`     |         | Callback function invoked on tooltip hide
 
