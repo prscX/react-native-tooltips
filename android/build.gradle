@@ -33,6 +33,6 @@ repositories {
 dependencies {
     compile 'com.facebook.react:react-native:+'
     compile 'com.tomergoldst.android:tooltips:1.0.9'
-    compile 'com.github.florent37:viewtooltip:1.1.1'
+    compile 'com.github.florent37:viewtooltip:1.1.4'
 }
   

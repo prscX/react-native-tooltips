@@ -50,10 +50,15 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
     String textColor = props.getString("textColor");
     int textSize = props.getInt("textSize");
     int gravity = props.getInt("gravity");
-
+    boolean arrow = props.getBoolean("arrow");
 
     ViewTooltip tooltip = ViewTooltip.on(reactContext.getCurrentActivity(), target);
     tooltip = tooltip.text(text);
+
+    if (!arrow) {
+      tooltip.arrowHeight(0);
+      tooltip.arrowWidth(0);
+    }
 
     if (position == 1) {
       tooltip = tooltip.position(ViewTooltip.Position.LEFT);
