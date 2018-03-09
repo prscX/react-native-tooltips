@@ -35,11 +35,9 @@ Before we dive into on how to use this library. We would like to thank all the c
 `$ react-native link react-native-tooltips`
 
 
-- MAC - iOS
+- **MAC**
 
-Please run below command:
-
-`cd ./node_modules/react-native-tooltips/ios && pod install`
+`$ cd ./node_modules/react-native-tooltips/ios && pod install`
 
 
 ## Usage
