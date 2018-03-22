@@ -6,6 +6,6 @@ target 'RNTooltips' do
   # use_frameworks!
 
   # Pods for RNTooltips
-  pod 'SexyTooltip'
+  pod 'SexyTooltip',:git => 'https://github.com/prscX/SexyTooltip.git', :commit =>'2fbe10260fb1b0f7dcd9822681a6970ce88112af'
   pod 'pop', '~> 1.0'
 end
