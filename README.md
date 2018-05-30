@@ -68,16 +68,14 @@ RNTooltips.Show(
 
 ## Props
 
-
+- **Props: Generic**
 
 | Prop              | Type       | Default | Note                                                                                                       |
 | ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
 | `text`       | `string`     |         | Text which needs to be displayed
-| `position: Android`      | `number`     |         | Position of the tooltip view. On iOS it is auto adjustable
-| `align: Android`       | `number`     |         | Alignment of tooltip                                                            |
 | `autoHide`     | `bool` |         | Should tip view get auto dismiss                                                      |
 | `duration` | `number` |         | Duration after which tooltip view should be dismissed                                                  |  |
-| `clickToHide: iOS`    | `bool`     |         | On click should tooltip view be dismissed                                        |  |
+| `clickToHide`    | `bool`     |         | On click should tooltip view be dismissed                                        |  |
 | `corner`      | `number`     |         | Radius of corner
 | `tintColor`      | `string`     |         | Color of tooltip view background
 | `textColor`      | `string`     |         | Color of text
@@ -85,9 +83,22 @@ RNTooltips.Show(
 | `gravity`      | `number`     |         | Gravity of text
 | `visible`      | `bool`     |         | Should tooltip be displayed
 | `shadow`      | `bool`     |         | Shadow on tooltip view
-| `arrow: iOS`      | `bool`     |    true     | Display Arrow
+| `arrow`      | `bool`     |    true     | Display Arrow
 | `reference`      | `object`     |         | Reference of react component of which you need tooltip
 | `onHide`      | `func`     |         | Callback function invoked on tooltip hide
+
+
+- **Props - iOS**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+
+- **Props - Android**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `position`      | `number`     |         | Position of the tooltip view. On iOS it is auto adjustable
+| `align`       | `number`     |         | Alignment of tooltip                                                            |
 
 
 ## Credits
