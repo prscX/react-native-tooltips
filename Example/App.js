@@ -27,12 +27,17 @@ export default class App extends Component<Props> {
 
     this.state = {
       visible: false,
+      dismiss: false,
       reference: undefined
     }
   }
 
   _onPress (ref) {
-    this.setState({ visible: true, reference: ref });
+    this.setState({ visible: true, dismiss: false, reference: ref });
+
+    // setTimeout(() => {
+    //   this.setState({ dismiss: true })
+    // }, 1000)
   }
 
   render() {
@@ -46,7 +51,7 @@ export default class App extends Component<Props> {
         <Bottom style={styles.bottom} onPress={ref => {
             this._onPress(ref);
           }} />
-        <Tooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} onHide={() => {
+        <Tooltips text={"Long Press Description"} visible={this.state.visible} dismiss={this.state.dismiss} reference={this.state.reference} autoHide={true} onHide={() => {
             console.log("On Hide");
           }} />
       </View>;

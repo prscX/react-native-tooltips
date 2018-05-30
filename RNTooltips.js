@@ -38,6 +38,7 @@ class Tooltips extends Component {
     autoHide: PropTypes.bool,
     duration: PropTypes.number,
     clickToHide: PropTypes.bool,
+    dismiss: PropTypes.bool,
     corner: PropTypes.number,
     tintColor: PropTypes.string,
     textColor: PropTypes.string,
@@ -55,6 +56,7 @@ class Tooltips extends Component {
     position: 4,
     align: 2,
     autoHide: true,
+    dismiss: false,
     duration: Platform.OS === "android" ? 4000 : 4,
     clickToHide: false,
     corner: Platform.OS === "android" ? 30 : 0,
@@ -104,24 +106,32 @@ class Tooltips extends Component {
     );
   }
 
+  static Dismiss(ref) {
+    RNTooltips.Dismiss(ref);
+  }
+
   componentDidUpdate() {
     if (this.props.visible && this.props.reference) {
-      Tooltips.Show(findNodeHandle(this.props.reference), {
-        text: this.props.text,
-        position: this.props.position,
-        align: this.props.align,
-        autoHide: this.props.autoHide,
-        duration: this.props.duration,
-        clickToHide: this.props.clickToHide,
-        corner: this.props.corner,
-        tintColor: this.props.tintColor,
-        textColor: this.props.textColor,
-        textSize: this.props.textSize,
-        arrow: this.props.arrow,
-        gravity: this.props.gravity,
-        shadow: this.props.shadow,
-        onHide: this.props.onHide
-      });
+      if (this.props.dismiss) {
+        Tooltips.Dismiss(findNodeHandle(this.props.reference))
+      } else {
+        Tooltips.Show(findNodeHandle(this.props.reference), {
+          text: this.props.text,
+          position: this.props.position,
+          align: this.props.align,
+          autoHide: this.props.autoHide,
+          duration: this.props.duration,
+          clickToHide: this.props.clickToHide,
+          corner: this.props.corner,
+          tintColor: this.props.tintColor,
+          textColor: this.props.textColor,
+          textSize: this.props.textSize,
+          arrow: this.props.arrow,
+          gravity: this.props.gravity,
+          shadow: this.props.shadow,
+          onHide: this.props.onHide
+        });
+      }
     }
   }
 

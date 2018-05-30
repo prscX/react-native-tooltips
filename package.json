@@ -1,6 +1,6 @@
 {
     "name": "react-native-tooltips",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "React Native: Native Tooltip View",
     "main": "RNTooltips.js",
     "scripts": {
@@ -12,6 +12,9 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/prscX/react-native-tooltips.git"
+    },
+    "devDependencies": {
+        "prettier-pack": "0.0.6"
     },
     "author": "Pranav Raj Singh Chauhan",
     "license": "MIT"

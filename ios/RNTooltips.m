@@ -11,6 +11,7 @@
 
 @implementation TooltipDelegate
 - (void)tooltipDidDismiss:(SexyTooltip *)tooltip {
+    tooltip = nil;
     _onHide(@[]);
 }
 
@@ -18,6 +19,8 @@
 
 
 @implementation RNTooltips
+
+SexyTooltip *toolTip;
 
 @synthesize bridge = _bridge;
 
@@ -50,7 +53,7 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHi
     [attributes addAttribute:NSForegroundColorAttributeName value:[RNTooltips colorFromHexCode: textColor] range:NSMakeRange(0, text.length)];
     [attributes addAttribute:NSFontAttributeName value: [UIFont systemFontOfSize: [textSize floatValue]] range:NSMakeRange(0,text.length)];
 
-    SexyTooltip *toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes];
+    toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes];
 
     TooltipDelegate *delegate = [[TooltipDelegate alloc] init];
     delegate.onHide = onHide;
@@ -74,6 +77,13 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHi
     [toolTip presentFromView:target animated:YES];
 }
 
+RCT_EXPORT_METHOD(Dismiss:(nonnull NSNumber *)view) {
+
+    if (toolTip == nil) return;
+
+    [toolTip dismiss];
+    toolTip = nil;
+}
 
 
 + (UIColor *) colorFromHexCode:(NSString *)hexString {

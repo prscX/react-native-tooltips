@@ -17,12 +17,11 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.views.view.ReactViewGroup;
 import com.github.florent37.viewtooltip.ViewTooltip;
-import com.tomergoldst.tooltips.ToolTip;
-import com.tomergoldst.tooltips.ToolTipsManager;
 
 public class RNTooltipsModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
+  private ViewTooltip tooltip;
 
   public RNTooltipsModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -52,7 +51,7 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
     int gravity = props.getInt("gravity");
     boolean arrow = props.getBoolean("arrow");
 
-    ViewTooltip tooltip = ViewTooltip.on(reactContext.getCurrentActivity(), target);
+    tooltip = ViewTooltip.on(reactContext.getCurrentActivity(), target);
     tooltip = tooltip.text(text);
 
     if (!arrow) {
@@ -94,5 +93,14 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
     });
 
     tooltip.show();
+  }
+
+  @ReactMethod
+  public void Dismiss(final int view) {
+
+    if (tooltip == null) return;
+
+    tooltip.close();
+    tooltip = null;
   }
 }
