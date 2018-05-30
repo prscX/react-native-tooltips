@@ -35,7 +35,32 @@ Before we dive into on how to use this library. We would like to thank all the c
 `$ react-native link react-native-tooltips`
 
 
-- **MAC**
+- **Android**
+
+Please add below snippet into your app `build.gradle`
+
+```
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+		...
+    }
+	...
+}
+
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+		google()
+		...
+    }
+}
+```
+
+- **iOS**
 
 `$ cd ./node_modules/react-native-tooltips/ios && pod install`
 
