@@ -1,3 +1,4 @@
+<h1 align="center">
 
 <p align="center">
   <img src="https://storage.googleapis.com/material-design/publish/material_v_12/assets/0B7WCemMG6e0VZ1JKMzJFcmhOWkk/components-tooltips.png" width="300" height="300" />
@@ -10,11 +11,13 @@
 </p>
 
 
-# React Native: Native Tooltips
+    ReactNative: Native Tooltips (Android/iOS)
+
+If this project has helped you out, please support us with a star 🌟
+</h1>
+
 This library is a React Native bridge around native tooltips. It allows you to create simple tip views.
 
-
-> **Note:** Android SDK 27 > is supported
 
 | **Android: [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip)**             |
 | ----------------- |
@@ -26,9 +29,8 @@ This library is a React Native bridge around native tooltips. It allows you to c
 | <img src="https://camo.githubusercontent.com/add1764d27026b81adb117e07a10781c9abbde1b/687474703a2f2f692e696d6775722e636f6d2f4f4e383257526c2e676966" height="300" />                  |
 
 
-Before we dive into on how to use this library. We would like to thank all the contributor of [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip) & [calm/SexyTooltip](https://github.com/calm/SexyTooltip) libraries for providing such a awesome nice, cool library
 
-## Getting started
+## 📖 Getting started
 
 `$ npm install react-native-tooltips --save`
 
@@ -60,12 +62,15 @@ allprojects {
 }
 ```
 
+> **Note:** Android SDK 27 > is supported
+
+
 - **iOS**
 
 `$ cd ./node_modules/react-native-tooltips/ios && pod install`
 
 
-## Usage
+## 💻 Usage
 
 ```javascript
 import RNTooltips from 'react-native-tooltips';
@@ -91,7 +96,7 @@ RNTooltips.Show(
 
 ```
 
-## Props
+## 💡 Props
 
 - **Props: Generic**
 
@@ -126,17 +131,36 @@ RNTooltips.Show(
 | `align`       | `number`     |         | Alignment of tooltip                                                            |
 
 
-## Credits
+## ✨ Credits
 
 - Android: [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip)
 - iOS: [calm/SexyTooltip](https://github.com/calm/SexyTooltip)
 
-## Contribution
+
+## 🤔 How to contribute
+Have an idea? Found a bug? Please raise to [ISSUES](https://github.com/prscX/react-native-tooltips/issues).
 Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
 
-## License
-This library is provided under the MIT License.
-
-RNTooltips @ Pranav Raj Singh Chauhan
+## 💫 Where is this library used?
+If you are using this library in one of your projects, add it in this list below. ✨
 
 
+## 📜 License
+This library is provided under the Apache 2 License.
+
+RNTooltips @ [prscX](https://github.com/prscX)
+
+## 💖 Support my projects
+I open-source almost everything I can, and I try to reply everyone needing help using these projects. Obviously, this takes time. You can integrate and use these projects in your applications for free! You can even change the source code and redistribute (even resell it).
+
+However, if you get some profit from this or just want to encourage me to continue creating stuff, there are few ways you can do it:
+* Starring and sharing the projects you like 🚀
+* If you're feeling especially charitable, please follow [prscX](https://github.com/prscX) on GitHub.
+
+  <a href="https://www.buymeacoffee.com/prscX" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+  Thanks! ❤️
+  <br/>
+  [prscX.github.io](https://prscx.github.io)
+  <br/>
+  </ Pranav >
