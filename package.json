@@ -14,7 +14,7 @@
         "url": "https://github.com/prscX/react-native-tooltips.git"
     },
     "devDependencies": {
-        "prettier-pack": "0.0.6"
+        "prettier-pack": "0.0.7"
     },
     "author": "Pranav Raj Singh Chauhan",
     "license": "Apache License"
