@@ -21,12 +21,12 @@ This library is a React Native bridge around native tooltips. It allows you to c
 
 | **Android: [florent37/ViewTooltip](https://github.com/florent37/ViewTooltip)**             |
 | ----------------- |
-| <img src="https://raw.githubusercontent.com/florent37/ViewTooltip/master/medias/with_border.gif" height="300" />                  |
+| <img src="https://raw.githubusercontent.com/florent37/ViewTooltip/master/medias/with_border.gif" />                  |
 
 
 | **iOS: [calm/SexyTooltip](https://github.com/calm/SexyTooltip)**             |
 | ----------------- |
-| <img src="https://camo.githubusercontent.com/add1764d27026b81adb117e07a10781c9abbde1b/687474703a2f2f692e696d6775722e636f6d2f4f4e383257526c2e676966" height="300" />                  |
+| <img src="https://camo.githubusercontent.com/add1764d27026b81adb117e07a10781c9abbde1b/687474703a2f2f692e696d6775722e636f6d2f4f4e383257526c2e676966" />                  |
 
 
 
@@ -46,7 +46,7 @@ Please add below snippet into your app `build.gradle`
 buildscript {
     repositories {
         jcenter()
-        google()
+        maven { url "https://maven.google.com" }
 		...
     }
 	...
@@ -56,7 +56,7 @@ buildscript {
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
-		google()
+		maven { url "https://maven.google.com" }
 		...
     }
 }
@@ -67,7 +67,8 @@ allprojects {
 
 - **iOS**
 
-`$ cd ./node_modules/react-native-tooltips/ios && pod install`
+    - After `react-native link react-native-tooltips`, please verify `node_modules/react-native-tooltips/ios/` contains Pods folder. If does not exist please execute `pod install` command on `node_modules/react-native-tooltips/ios/`, if any error => try `pod repo` update then `pod install`
+
 
 
 ## 💻 Usage
