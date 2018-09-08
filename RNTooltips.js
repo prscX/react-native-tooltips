@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   findNodeHandle,
   ViewPropTypes,
@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 let { RNTooltips } = NativeModules;
 
-class Tooltips extends Component {
+class Tooltips extends PureComponent {
   static POSITION: {
     LEFT: 1,
     RIGHT: 2,
