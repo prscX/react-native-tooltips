@@ -38,7 +38,6 @@ class Tooltips extends PureComponent {
     autoHide: PropTypes.bool,
     duration: PropTypes.number,
     clickToHide: PropTypes.bool,
-    dismiss: PropTypes.bool,
     corner: PropTypes.number,
     tintColor: PropTypes.string,
     textColor: PropTypes.string,
@@ -56,7 +55,6 @@ class Tooltips extends PureComponent {
     position: 4,
     align: 2,
     autoHide: true,
-    dismiss: false,
     duration: Platform.OS === "android" ? 4000 : 4,
     clickToHide: false,
     corner: Platform.OS === "android" ? 30 : 0,
@@ -69,31 +67,47 @@ class Tooltips extends PureComponent {
   };
 
   static Show(ref, props) {
+    if (typeof ref !== 'number') {
+      ref = findNodeHandle(ref);
+    }
+
     if (props.text === undefined) {
       props.text = Tooltips.defaultProps.text;
-    } else if (props.position === undefined) {
+    }
+    if (props.position === undefined) {
       props.position = Tooltips.defaultProps.position;
-    } else if (props.align === undefined) {
+    }
+    if (props.align === undefined) {
       props.align = Tooltips.defaultProps.align;
-    } else if (props.autoHide === undefined) {
+    }
+    if (props.autoHide === undefined) {
       props.autoHide = Tooltips.defaultProps.autoHide;
-    } else if (props.duration === undefined) {
+    }
+    if (props.duration === undefined) {
       props.duration = Tooltips.defaultProps.duration;
-    } else if (props.clickToHide === undefined) {
+    }
+    if (props.clickToHide === undefined) {
       props.clickToHide = Tooltips.defaultProps.clickToHide;
-    } else if (props.corner === undefined) {
+    }
+    if (props.corner === undefined) {
       props.corner = Tooltips.defaultProps.corner;
-    } else if (props.tintColor === undefined) {
+    }
+    if (props.tintColor === undefined) {
       props.tintColor = Tooltips.defaultProps.tintColor;
-    } else if (props.textColor === undefined) {
+    }
+    if (props.textColor === undefined) {
       props.textColor = Tooltips.defaultProps.textColor;
-    } else if (props.textSize === undefined) {
+    }
+    if (props.textSize === undefined) {
       props.textSize = Tooltips.defaultProps.textSize;
-    } else if (props.gravity === undefined) {
+    }
+    if (props.gravity === undefined) {
       props.gravity = Tooltips.defaultProps.gravity;
-    } else if (props.shadow === undefined) {
+    }
+    if (props.shadow === undefined) {
       props.shadow = Tooltips.defaultProps.shadow;
-    } else if (props.arrow === undefined) {
+    }
+    if (props.arrow === undefined) {
       props.arrow = Tooltips.defaultProps.arrow
     }
 
@@ -107,31 +121,33 @@ class Tooltips extends PureComponent {
   }
 
   static Dismiss(ref) {
+    if (typeof ref !== "number") {
+      ref = findNodeHandle(ref);
+    }
+
     RNTooltips.Dismiss(ref);
   }
 
   componentDidUpdate() {
-    if (this.props.visible && this.props.reference) {
-      if (this.props.dismiss) {
-        Tooltips.Dismiss(findNodeHandle(this.props.reference))
-      } else {
-        Tooltips.Show(findNodeHandle(this.props.reference), {
-          text: this.props.text,
-          position: this.props.position,
-          align: this.props.align,
-          autoHide: this.props.autoHide,
-          duration: this.props.duration,
-          clickToHide: this.props.clickToHide,
-          corner: this.props.corner,
-          tintColor: this.props.tintColor,
-          textColor: this.props.textColor,
-          textSize: this.props.textSize,
-          arrow: this.props.arrow,
-          gravity: this.props.gravity,
-          shadow: this.props.shadow,
-          onHide: this.props.onHide
-        });
-      }
+    if (this.props.visible === true && this.props.reference) {
+      Tooltips.Show(findNodeHandle(this.props.reference), {
+        text: this.props.text,
+        position: this.props.position,
+        align: this.props.align,
+        autoHide: this.props.autoHide,
+        duration: this.props.duration,
+        clickToHide: this.props.clickToHide,
+        corner: this.props.corner,
+        tintColor: this.props.tintColor,
+        textColor: this.props.textColor,
+        textSize: this.props.textSize,
+        arrow: this.props.arrow,
+        gravity: this.props.gravity,
+        shadow: this.props.shadow,
+        onHide: this.props.onHide
+      });
+    } else if (this.props.visible === false && this.props.reference) {
+      Tooltips.Dismiss(findNodeHandle(this.props.reference))
     }
   }
 
