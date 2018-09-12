@@ -38,6 +38,12 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
     final Activity activity = this.getCurrentActivity();
     final ViewGroup target = activity.findViewById(view);
 
+    if (target == null) {
+        // The reference to the component haven't been rendered on the js side yet.
+        // View id doesn't exist on the native side yet.
+        return;
+    }
+
     String text = props.getString("text");
     int position = props.getInt("position");
     int align = props.getInt("align");
