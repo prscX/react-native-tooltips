@@ -34,15 +34,17 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void Show(final int view, final ReadableMap props, final Callback onHide) {
+  public void Show(final int targetId, final int parentId, final ReadableMap props, final Callback onHide) {
     final Activity activity = this.getCurrentActivity();
     final ViewGroup target = activity.findViewById(view);
 
     if (target == null) {
-        // The reference to the component haven't been rendered on the js side yet.
-        // View id doesn't exist on the native side yet.
-        return;
-    }
+      // it is possible that target end up being NULL
+      // when findNodeHandle returns the wrong tag, findViewById won't be able to retrieve the view
+      // there was an issue opened related to this problem 2 years ago, but it has never been fixed
+      // https://github.com/facebook/react-native/issues/10385
+      return;
+  }
 
     String text = props.getString("text");
     int position = props.getInt("position");
@@ -57,7 +59,9 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
     int gravity = props.getInt("gravity");
     boolean arrow = props.getBoolean("arrow");
 
-    tooltip = ViewTooltip.on(reactContext.getCurrentActivity(), target);
+    // parent reference is not required
+    // ViewTooltip.on can retrieve the parent Context by itself
+    tooltip = ViewTooltip.on(target);
     tooltip = tooltip.text(text);
 
     if (!arrow) {
@@ -104,7 +108,9 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void Dismiss(final int view) {
 
-    if (tooltip == null) return;
+    if (tooltip == null) {
+      return;
+  }
 
     tooltip.close();
     tooltip = null;

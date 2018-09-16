@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import {
   findNodeHandle,
   ViewPropTypes,
@@ -47,6 +47,7 @@ class Tooltips extends PureComponent {
     arrow: PropTypes.bool,
     visible: PropTypes.bool,
     reference: PropTypes.object,
+    parent: PropTypes.object,
     onHide: PropTypes.func
   };
 
@@ -66,9 +67,12 @@ class Tooltips extends PureComponent {
     shadow: true
   };
 
-  static Show(ref, props) {
-    if (typeof ref !== 'number') {
+  static Show(ref, parent, props) {
+    if (typeof ref !== "number") {
       ref = findNodeHandle(ref);
+    }
+    if (typeof parent !== "number") {
+      parent = findNodeHandle(parent);
     }
 
     if (props.text === undefined) {
@@ -108,16 +112,12 @@ class Tooltips extends PureComponent {
       props.shadow = Tooltips.defaultProps.shadow;
     }
     if (props.arrow === undefined) {
-      props.arrow = Tooltips.defaultProps.arrow
+      props.arrow = Tooltips.defaultProps.arrow;
     }
 
-    RNTooltips.Show(
-      ref,
-      props,
-      () => {
-        props.onHide && props.onHide()
-      }
-    );
+    RNTooltips.Show(ref, parent, props, () => {
+      props.onHide && props.onHide();
+    });
   }
 
   static Dismiss(ref) {
@@ -129,25 +129,39 @@ class Tooltips extends PureComponent {
   }
 
   componentDidUpdate() {
-    if (this.props.visible === true && this.props.reference) {
-      Tooltips.Show(findNodeHandle(this.props.reference), {
-        text: this.props.text,
-        position: this.props.position,
-        align: this.props.align,
-        autoHide: this.props.autoHide,
-        duration: this.props.duration,
-        clickToHide: this.props.clickToHide,
-        corner: this.props.corner,
-        tintColor: this.props.tintColor,
-        textColor: this.props.textColor,
-        textSize: this.props.textSize,
-        arrow: this.props.arrow,
-        gravity: this.props.gravity,
-        shadow: this.props.shadow,
-        onHide: this.props.onHide
-      });
+    if (
+      this.props.visible === true &&
+      this.props.reference &&
+      this.props.parent
+    ) {
+      Tooltips.Show(
+        findNodeHandle(this.props.reference),
+        findNodeHandle(this.props.parent),
+        {
+          text: this.props.text,
+          position: this.props.position,
+          align: this.props.align,
+          autoHide: this.props.autoHide,
+          duration: this.props.duration,
+          clickToHide: this.props.clickToHide,
+          corner: this.props.corner,
+          tintColor: this.props.tintColor,
+          textColor: this.props.textColor,
+          textSize: this.props.textSize,
+          arrow: this.props.arrow,
+          gravity: this.props.gravity,
+          shadow: this.props.shadow,
+          onHide: this.props.onHide
+        }
+      );
     } else if (this.props.visible === false && this.props.reference) {
-      Tooltips.Dismiss(findNodeHandle(this.props.reference))
+      Tooltips.Dismiss(findNodeHandle(this.props.reference));
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.reference) {
+      Tooltips.Dismiss(findNodeHandle(this.props.reference));
     }
   }
 
