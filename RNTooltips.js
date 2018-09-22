@@ -46,7 +46,7 @@ class Tooltips extends PureComponent {
     shadow: PropTypes.bool,
     arrow: PropTypes.bool,
     visible: PropTypes.bool,
-    reference: PropTypes.object,
+    target: PropTypes.object,
     parent: PropTypes.object,
     onHide: PropTypes.func
   };
@@ -67,9 +67,9 @@ class Tooltips extends PureComponent {
     shadow: true
   };
 
-  static Show(ref, parent, props) {
-    if (typeof ref !== "number") {
-      ref = findNodeHandle(ref);
+  static Show(target, parent, props) {
+    if (typeof target !== "number") {
+      target = findNodeHandle(target);
     }
     if (typeof parent !== "number") {
       parent = findNodeHandle(parent);
@@ -115,27 +115,23 @@ class Tooltips extends PureComponent {
       props.arrow = Tooltips.defaultProps.arrow;
     }
 
-    RNTooltips.Show(ref, parent, props, () => {
+    RNTooltips.Show(target, parent, props, () => {
       props.onHide && props.onHide();
     });
   }
 
-  static Dismiss(ref) {
-    if (typeof ref !== "number") {
-      ref = findNodeHandle(ref);
+  static Dismiss(target) {
+    if (typeof target !== "number") {
+      target = findNodeHandle(target);
     }
 
-    RNTooltips.Dismiss(ref);
+    RNTooltips.Dismiss(target);
   }
 
   componentDidUpdate() {
-    if (
-      this.props.visible === true &&
-      this.props.reference &&
-      this.props.parent
-    ) {
+    if (this.props.visible === true && this.props.target && this.props.parent) {
       Tooltips.Show(
-        findNodeHandle(this.props.reference),
+        findNodeHandle(this.props.target),
         findNodeHandle(this.props.parent),
         {
           text: this.props.text,
@@ -154,14 +150,15 @@ class Tooltips extends PureComponent {
           onHide: this.props.onHide
         }
       );
-    } else if (this.props.visible === false && this.props.reference) {
-      Tooltips.Dismiss(findNodeHandle(this.props.reference));
+    } else if (this.props.visible === false && this.props.target) {
+      Tooltips.Dismiss(findNodeHandle(this.props.target));
     }
   }
 
   componentWillUnmount() {
-    if (this.props.reference) {
-      Tooltips.Dismiss(findNodeHandle(this.props.reference));
+    if (Platform.OS === "android" && this.props.target) {
+      // this isn't required for iOS, but android tooltips have issues to disappear
+      Tooltips.Dismiss(findNodeHandle(this.props.target));
     }
   }
 
