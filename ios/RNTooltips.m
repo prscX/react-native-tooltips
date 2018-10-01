@@ -1,7 +1,4 @@
-
 #import "RNTooltips.h"
-
-
 
 @interface TooltipDelegate : NSObject <SexyTooltipDelegate>
 
@@ -31,29 +28,35 @@ SexyTooltip *toolTip;
 RCT_EXPORT_MODULE()
 
 
-RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHide:(RCTResponseSenderBlock)onHide)
+RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)targetViewTag inParentView:(nonnull NSNumber *)parentViewTag props:(NSDictionary *)props onHide:(RCTResponseSenderBlock)onHide)
 {
-    UIView *target = [self.bridge.uiManager viewForReactTag: view];
+  UIView *target = [self.bridge.uiManager viewForReactTag: targetViewTag];
+  UIView *parentView = [self.bridge.uiManager viewForReactTag:parentViewTag];
+  if (!parentView) {
+    // parent is null, then return
+    return;
+  }
     
-    NSString *text = [props objectForKey: @"text"];
-    NSNumber *position = [props objectForKey: @"position"];
-    NSNumber *align = [props objectForKey: @"align"];
-    NSNumber *autoHide = [props objectForKey: @"autoHide"];
-    NSNumber *duration = [props objectForKey: @"duration"];
-    NSNumber *clickToHide = [props objectForKey: @"clickToHide"];
-    NSNumber *corner = [props objectForKey: @"corner"];
-    NSString *tintColor = [props objectForKey: @"tintColor"];
-    NSString *textColor = [props objectForKey: @"textColor"];
-    NSNumber *textSize = [props objectForKey: @"textSize"];
-    NSNumber *gravity = [props objectForKey: @"gravity"];
-    NSNumber *shadow = [props objectForKey: @"shadow"];
-    NSNumber *arrow = [props objectForKey: @"arrow"];
+  NSString *text = [props objectForKey: @"text"];
+//  NSNumber *position = [props objectForKey: @"position"]; // not used yet
+//  NSNumber *align = [props objectForKey: @"align"]; // not used yet
+  NSNumber *autoHide = [props objectForKey: @"autoHide"];
+  NSNumber *duration = [props objectForKey: @"duration"];
+  NSNumber *clickToHide = [props objectForKey: @"clickToHide"];
+  NSNumber *corner = [props objectForKey: @"corner"];
+  NSString *tintColor = [props objectForKey: @"tintColor"];
+  NSString *textColor = [props objectForKey: @"textColor"];
+  NSNumber *textSize = [props objectForKey: @"textSize"];
+//  NSNumber *gravity = [props objectForKey: @"gravity"]; not used yet
+  NSNumber *shadow = [props objectForKey: @"shadow"];
+  NSNumber *arrow = [props objectForKey: @"arrow"];
 
     NSMutableAttributedString *attributes = [[NSMutableAttributedString alloc] initWithString: text];
     [attributes addAttribute:NSForegroundColorAttributeName value:[RNTooltips colorFromHexCode: textColor] range:NSMakeRange(0, text.length)];
     [attributes addAttribute:NSFontAttributeName value: [UIFont systemFontOfSize: [textSize floatValue]] range:NSMakeRange(0,text.length)];
 
-    toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes];
+    toolTip = [[SexyTooltip alloc] initWithAttributedString: attributes sizedToView:parentView];
+    toolTip.layer.zPosition = 9999; // make sure the tooltips is always in front of other views.
 
     TooltipDelegate *delegate = [[TooltipDelegate alloc] init];
     delegate.onHide = onHide;
@@ -62,7 +65,7 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHi
     toolTip.color = [RNTooltips colorFromHexCode: tintColor];
     toolTip.cornerRadius = [corner floatValue];
     toolTip.dismissesOnTap = [clickToHide boolValue];
-    toolTip.padding = UIEdgeInsetsMake(6, 8, 6, 8);
+    toolTip.padding = UIEdgeInsetsMake(6.0, 8.0, 6.0, 8.0);
     
     if (![arrow boolValue]) {
         toolTip.arrowHeight = 0;
@@ -78,11 +81,13 @@ RCT_EXPORT_METHOD(Show:(nonnull NSNumber *)view props:(NSDictionary *)props onHi
 }
 
 RCT_EXPORT_METHOD(Dismiss:(nonnull NSNumber *)view) {
-
-    if (toolTip == nil) return;
-
-    [toolTip dismiss];
-    toolTip = nil;
+  
+  if (toolTip == nil) {
+    return;
+  }
+  
+  [toolTip dismiss];
+  toolTip = nil;
 }
 
 
@@ -108,7 +113,6 @@ RCT_EXPORT_METHOD(Dismiss:(nonnull NSNumber *)view) {
     
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
-
 
 @end
   

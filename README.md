@@ -70,53 +70,51 @@ allprojects {
     - After `react-native link react-native-tooltips`, please verify `node_modules/react-native-tooltips/ios/` contains Pods folder. If does not exist please execute `pod install` command on `node_modules/react-native-tooltips/ios/`, if any error => try `pod repo` update then `pod install`
 
 
-
 ## 💻 Usage
 
 ```javascript
 import RNTooltips from 'react-native-tooltips';
-
 ```
-
 
 - React Way
 
 ```javascript
-<RNTooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} />
+<RNTooltips text={"Long Press Description"} visible={this.state.visible} target={this.state.target} parent={this.state.parent} />
 ```
 
 - API Way
 
 ```javascript
 RNTooltips.Show(
-    this.state.reference,
+    this.state.target,
+    this.state.parent,
     {
         text: 'Long Press Description'
     }
 )
-
 ```
 
 ## 💡 Props
 
 - **Props: Generic**
 
-| Prop              | Type       | Default | Note                                                                                                       |
-| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
-| `text`       | `string`     |         | Text which needs to be displayed
-| `autoHide`     | `bool` |         | Should tip view get auto dismiss                                                      |
-| `duration` | `number` |         | Duration after which tooltip view should be dismissed                                                  |  |
-| `clickToHide`    | `bool`     |         | On click should tooltip view be dismissed                                        |  |
-| `corner`      | `number`     |         | Radius of corner
-| `tintColor`      | `string`     |         | Color of tooltip view background
-| `textColor`      | `string`     |         | Color of text
-| `textSize`      | `number`     |         | Size of text displayed
-| `gravity`      | `number`     |         | Gravity of text
-| `visible`      | `bool`     |         | Should tooltip be displayed
-| `shadow`      | `bool`     |         | Shadow on tooltip view
-| `arrow`      | `bool`     |    true     | Display Arrow
-| `reference`      | `object`     |         | Reference of react component of which you need tooltip
-| `onHide`      | `func`     |         | Callback function invoked on tooltip hide
+| Prop | Type | Default | Note |
+| --- | --- | --- | --- |
+| `text` | `string` | | Text which needs to be displayed
+| `autoHide` | `bool` | | Should tip view get auto dismiss |
+| `duration` | `number` | | Duration after which tooltip view should be dismissed |  |
+| `clickToHide` | `bool` | | On click should tooltip view be dismissed |  |
+| `corner` | `number` | | Radius of corner
+| `tintColor` | `string` | | Color of tooltip view background
+| `textColor` | `string` | | Color of text
+| `textSize` | `number` | | Size of text displayed
+| `gravity` | `number` | | Gravity of text
+| `visible` | `bool` | | Should tooltip be displayed
+| `shadow` | `bool` | | Shadow on tooltip view
+| `arrow` | `bool` | true | Display Arrow
+| `target` | `object` | | Reference of react component of which you need the tooltip
+| `parent` | `object` | | Reference of the parent component of which you need the tooltip to fit in
+| `onHide` | `func` | | Callback function invoked on tooltip hide
 
 
 - **Props - iOS**

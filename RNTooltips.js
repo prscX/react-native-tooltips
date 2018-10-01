@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import {
   findNodeHandle,
   ViewPropTypes,
@@ -46,7 +46,8 @@ class Tooltips extends PureComponent {
     shadow: PropTypes.bool,
     arrow: PropTypes.bool,
     visible: PropTypes.bool,
-    reference: PropTypes.object,
+    target: PropTypes.object,
+    parent: PropTypes.object,
     onHide: PropTypes.func
   };
 
@@ -66,9 +67,12 @@ class Tooltips extends PureComponent {
     shadow: true
   };
 
-  static Show(ref, props) {
-    if (typeof ref !== 'number') {
-      ref = findNodeHandle(ref);
+  static Show(target, parent, props) {
+    if (typeof target !== "number") {
+      target = findNodeHandle(target);
+    }
+    if (typeof parent !== "number") {
+      parent = findNodeHandle(parent);
     }
 
     if (props.text === undefined) {
@@ -108,46 +112,53 @@ class Tooltips extends PureComponent {
       props.shadow = Tooltips.defaultProps.shadow;
     }
     if (props.arrow === undefined) {
-      props.arrow = Tooltips.defaultProps.arrow
+      props.arrow = Tooltips.defaultProps.arrow;
     }
 
-    RNTooltips.Show(
-      ref,
-      props,
-      () => {
-        props.onHide && props.onHide()
-      }
-    );
+    RNTooltips.Show(target, parent, props, () => {
+      props.onHide && props.onHide();
+    });
   }
 
-  static Dismiss(ref) {
-    if (typeof ref !== "number") {
-      ref = findNodeHandle(ref);
+  static Dismiss(target) {
+    if (typeof target !== "number") {
+      target = findNodeHandle(target);
     }
 
-    RNTooltips.Dismiss(ref);
+    RNTooltips.Dismiss(target);
   }
 
   componentDidUpdate() {
-    if (this.props.visible === true && this.props.reference) {
-      Tooltips.Show(findNodeHandle(this.props.reference), {
-        text: this.props.text,
-        position: this.props.position,
-        align: this.props.align,
-        autoHide: this.props.autoHide,
-        duration: this.props.duration,
-        clickToHide: this.props.clickToHide,
-        corner: this.props.corner,
-        tintColor: this.props.tintColor,
-        textColor: this.props.textColor,
-        textSize: this.props.textSize,
-        arrow: this.props.arrow,
-        gravity: this.props.gravity,
-        shadow: this.props.shadow,
-        onHide: this.props.onHide
-      });
-    } else if (this.props.visible === false && this.props.reference) {
-      Tooltips.Dismiss(findNodeHandle(this.props.reference))
+    if (this.props.visible === true && this.props.target && this.props.parent) {
+      Tooltips.Show(
+        findNodeHandle(this.props.target),
+        findNodeHandle(this.props.parent),
+        {
+          text: this.props.text,
+          position: this.props.position,
+          align: this.props.align,
+          autoHide: this.props.autoHide,
+          duration: this.props.duration,
+          clickToHide: this.props.clickToHide,
+          corner: this.props.corner,
+          tintColor: this.props.tintColor,
+          textColor: this.props.textColor,
+          textSize: this.props.textSize,
+          arrow: this.props.arrow,
+          gravity: this.props.gravity,
+          shadow: this.props.shadow,
+          onHide: this.props.onHide
+        }
+      );
+    } else if (this.props.visible === false && this.props.target) {
+      Tooltips.Dismiss(findNodeHandle(this.props.target));
+    }
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === "android" && this.props.target) {
+      // this isn't required for iOS, but android tooltips have issues to disappear
+      Tooltips.Dismiss(findNodeHandle(this.props.target));
     }
   }
 
