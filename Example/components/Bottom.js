@@ -8,23 +8,25 @@ class Bottom extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} ref={(parent) => {
+        this.parent = parent
+      }}>
         <Button
           title={"Bottom Left"}
-          ref={ref => {
-            this.ref1 = ref;
+          ref={target => {
+            this.target1 = target;
           }}
           onPress={() => {
-            this.props.onPress(this.ref1);
+            this.props.onPress(this.parent, this.target1);
           }}
         />
         <Button
           title={"Bottom Right"}
-          ref={ref => {
-            this.ref2 = ref;
+          ref={target => {
+            this.target2 = target;
           }}
           onPress={() => {
-            this.props.onPress(this.ref2);
+            this.props.onPress(this.parent, this.target2);
           }}
         />
       </View>

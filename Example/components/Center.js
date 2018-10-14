@@ -8,32 +8,34 @@ class Center extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container} ref={(ref) => {
+        this.parent = ref
+      }}>
         <Button
           title={"Center Left"}
-          ref={ref => {
-            this.ref1 = ref;
+          ref={target => {
+            this.target1 = target;
           }}
           onPress={() => {
-            this.props.onPress(this.ref1);
+            this.props.onPress(this.parent, this.target1);
           }}
         />
         <Button
           title={"Center Center"}
-          ref={ref => {
-            this.ref2 = ref;
+          ref={target => {
+            this.target2 = target;
           }}
           onPress={() => {
-            this.props.onPress(this.ref2);
+            this.props.onPress(this.parent, this.target2);
           }}
         />
         <Button
           title={"Center Right"}
-          ref={ref => {
-            this.ref3 = ref;
+          ref={target => {
+            this.target3 = target;
           }}
           onPress={() => {
-            this.props.onPress(this.ref3);
+            this.props.onPress(this.parent, this.target3);
           }}
         />
       </View>

@@ -36,7 +36,7 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void Show(final int targetId, final int parentId, final ReadableMap props, final Callback onHide) {
     final Activity activity = this.getCurrentActivity();
-    final ViewGroup target = activity.findViewById(view);
+    final ViewGroup target = activity.findViewById(targetId);
 
     if (target == null) {
       // it is possible that target end up being NULL

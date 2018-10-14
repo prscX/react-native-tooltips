@@ -31,8 +31,8 @@ export default class App extends Component<Props> {
     }
   }
 
-  _onPress (ref) {
-    this.setState({ visible: true, reference: ref });
+  _onPress (parent, target) {
+    this.setState({ visible: true, parent: parent, target: target });
 
     // setTimeout(() => {
     //   this.setState({ visible: false })
@@ -49,16 +49,16 @@ export default class App extends Component<Props> {
 
   render() {
     return <View style={styles.container}>
-        <Top style={styles.top} onPress={ref => {
-            this._onPress(ref);
+        <Top style={styles.top} onPress={(parent, target) => {
+            this._onPress(parent, target);
           }} />
-        <Center style={styles.center} onPress={ref => {
-            this._onPress(ref);
+        <Center style={styles.center} onPress={(parent, target) => {
+            this._onPress(parent, target);
           }} />
-        <Bottom style={styles.bottom} onPress={ref => {
-            this._onPress(ref);
+        <Bottom style={styles.bottom} onPress={(parent, target) => {
+            this._onPress(parent, target);
           }} />
-        <Tooltips text={"Long Press Description"} visible={this.state.visible} reference={this.state.reference} autoHide={true} onHide={() => {
+        <Tooltips text={"Long Press Description"} visible={this.state.visible} parent={this.state.parent} target={this.state.target} autoHide={true} onHide={() => {
             console.log("On Hide");
           }} clickToHide={false}  />
       </View>;

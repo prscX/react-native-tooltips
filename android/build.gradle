@@ -14,7 +14,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 16
@@ -33,7 +33,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:+'
-    compile 'com.github.florent37:viewtooltip:1.1.6'
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.github.florent37:viewtooltip:1.1.6'
 }
-  
