@@ -1,25 +1,25 @@
 {
-    "name": "react-native-tooltips",
-    "version": "0.0.10",
-    "description": "React Native: Native Tooltip View",
-    "main": "RNTooltips.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "node ../pod-installer/index.js"
-    },
-    "keywords": [
-        "react-native"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/prscX/react-native-tooltips.git"
-    },
-    "dependencies": {
-        "pod-installer": "0.0.0"
-    },
-    "devDependencies": {
-        "prettier-pack": "0.0.7"
-    },
-    "author": "Pranav Raj Singh Chauhan",
-    "license": "Apache License"
+  "name": "react-native-tooltips",
+  "version": "0.0.11",
+  "description": "React Native: Native Tooltip View",
+  "main": "RNTooltips.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node ../pod-installer/index.js"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prscX/react-native-tooltips.git"
+  },
+  "dependencies": {
+    "pod-installer": "0.0.0"
+  },
+  "devDependencies": {
+    "prettier-pack": "0.0.8"
+  },
+  "author": "Pranav Raj Singh Chauhan",
+  "license": "Apache License"
 }
