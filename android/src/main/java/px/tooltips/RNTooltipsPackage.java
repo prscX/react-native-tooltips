@@ -1,5 +1,5 @@
 
-package com.reactlibrary;
+package px.tooltips;
 
 import java.util.Arrays;
 import java.util.Collections;
