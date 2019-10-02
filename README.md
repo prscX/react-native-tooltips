@@ -32,7 +32,33 @@ This library is a React Native bridge around native tooltips. It allows you to c
 
 ## 📖 Getting started
 
-`$ npm install react-native-tooltips --save`
+`$ yarn add react-native-tooltips`
+
+## **RN60 >= RNT V1 >**
+
+> RN60 above please use `react-native-tooltips` V1 and above
+
+- **iOS**
+
+> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
+
+	- Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
+
+
+```
+  pod 'SexyTooltip',:git => 'https://github.com/prscX/SexyTooltip.git'
+
+  use_native_modules!
+
+  pod 'RNTooltips', :path => '../node_modules/react-native-tooltips/ios'
+```
+
+- **Android**
+
+
+## **RN60 < RNT V1 <**
+
+> RN60 below please use `react-native-tooltips` V.0.*
 
 `$ react-native link react-native-tooltips`
 

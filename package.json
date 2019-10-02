@@ -1,11 +1,11 @@
 {
   "name": "react-native-tooltips",
-  "version": "0.0.11",
+  "version": "1.0.0",
   "description": "React Native: Native Tooltip View",
   "main": "RNTooltips.js",
+  "homepage": "https://github.com/prscX/react-native-tooltips.git",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node ../pod-installer/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react-native"
@@ -15,7 +15,6 @@
     "url": "https://github.com/prscX/react-native-tooltips.git"
   },
   "dependencies": {
-    "pod-installer": "0.0.0"
   },
   "devDependencies": {
     "prettier-pack": "0.0.8"
