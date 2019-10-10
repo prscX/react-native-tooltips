@@ -18,5 +18,6 @@ Pod::Spec.new do |s|
   s.preserve_paths         = 'LICENSE', 'package.json'
   s.source_files           = '**/*.{h,m}'
   s.dependency             'React'
+  s.dependency             'SexyTooltip'
   s.dependency             'pop', '~> 1.0'
 end
