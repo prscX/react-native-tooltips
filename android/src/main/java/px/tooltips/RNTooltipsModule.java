@@ -63,6 +63,7 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
               int textSize = props.getInt("textSize");
               int gravity = props.getInt("gravity");
               boolean arrow = props.getBoolean("arrow");
+              boolean shadow = props.getBoolean("shadow");
 
               // parent reference is not required
               // ViewTooltip.on can retrieve the parent Context by itself
@@ -99,6 +100,7 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
               tooltip = tooltip.textColor(Color.parseColor(textColor));
               tooltip = tooltip.textSize(TypedValue.COMPLEX_UNIT_SP, textSize);
               tooltip = tooltip.setTextGravity(gravity);
+              tooltip = tooltip.withShadow(shadow);
 
               tooltip.onHide(new ViewTooltip.ListenerHide() {
                 @Override
