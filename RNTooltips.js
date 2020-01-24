@@ -115,9 +115,12 @@ class Tooltips extends PureComponent {
       props.arrow = Tooltips.defaultProps.arrow;
     }
 
-    RNTooltips.Show(target, parent, props, () => {
+    // try to work around duplicate callback invocation error on android
+    const cbGenerator = () => () => {
       props.onHide && props.onHide();
-    });
+    };
+
+    RNTooltips.Show(target, parent, props, cbGenerator());
   }
 
   static Dismiss(target) {
