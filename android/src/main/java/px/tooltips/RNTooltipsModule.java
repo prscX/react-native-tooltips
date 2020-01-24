@@ -115,19 +115,20 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
           });
         }
       });
-
-
-  
   }
 
   @ReactMethod
   public void Dismiss(final int view) {
+    reactContext.runOnUiQueueThread(new Runnable() {
+      @Override
+      public void run() {
+        if (tooltip == null) {
+          return;
+        }
 
-    if (tooltip == null) {
-      return;
-  }
-
-    tooltip.close();
-    tooltip = null;
+        tooltip.close();
+        tooltip = null;
+      }
+    });
   }
 }
