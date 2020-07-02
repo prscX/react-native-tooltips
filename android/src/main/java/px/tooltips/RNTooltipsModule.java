@@ -3,6 +3,7 @@ package px.tooltips;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,9 +104,17 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
               tooltip = tooltip.withShadow(shadow);
 
               tooltip.onHide(new ViewTooltip.ListenerHide() {
+                boolean invoked = false;
                 @Override
                 public void onHide(View view) {
-                  onHide.invoke();
+                  // avoid double execution of the callback, which would cause RuntimeException
+                  if (invoked) return;
+                  else invoked = true;
+                  try {
+                    onHide.invoke();
+                  } catch (RuntimeException e) {
+                    Log.w("RNTooltips","Double invocation of callback", e);
+                  }
                 }
               });
 
