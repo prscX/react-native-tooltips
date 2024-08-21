@@ -36,5 +36,5 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.github.florent37:viewtooltip:1.1.6'
+    implementation 'com.github.florent37:ViewTooltip:f79a8955ef'
 }
