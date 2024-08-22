@@ -19,6 +19,7 @@ import com.github.florent37.viewtooltip.ViewTooltip;
 public class RNTooltipsModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
+  private Callback _onHide = null;
   private ViewTooltip tooltip;
 
   public RNTooltipsModule(ReactApplicationContext reactContext) {
@@ -50,6 +51,8 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
                 // https://github.com/facebook/react-native/issues/10385
                 return;
               }
+
+              _onHide = onHide;
 
               String text = props.getString("text");
               int position = props.getInt("position");
@@ -105,7 +108,12 @@ public class RNTooltipsModule extends ReactContextBaseJavaModule {
               tooltip.onHide(new ViewTooltip.ListenerHide() {
                 @Override
                 public void onHide(View view) {
-                  onHide.invoke();
+                  if (_onHide != null) {
+                    _onHide.invoke();
+                    _onHide = null;
+                  }
+
+                  return;
                 }
               });
 
