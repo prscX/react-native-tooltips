@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/react-native-tooltips"><img src="http://img.shields.io/npm/v/react-native-tooltips.svg?style=flat" /></a>
   <a href="https://github.com/prscX/react-native-tooltips/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
-  <a href="https://github.com/prscX/react-native-tooltips#License"><img src="https://img.shields.io/npm/l/react-native-tooltips.svg?style=flat" /></a>
+  <a href="https://github.com/prscX/react-native-tooltips/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/react-native-tooltips.svg?style=flat" /></a>
 </p>
 
 
